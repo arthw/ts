@@ -28,17 +28,25 @@ def load(filename):
     return data 
 
 def adj(stock_id, start_date, end_date):
+print("k")
+    raw_k = ts.get_k_data(stock_id, start=start_date, end=end_date)
+    print("hist")
     raw = ts.get_hist_data(stock_id, start=start_date, end=end_date)
+    print("h")
     hist = ts.get_h_data(stock_id, start=start_date, end=end_date)
+    print("done")
     sync_list = ['open', 'close', 'high', 'low']
     rm_list = ['ma5', 'ma10', 'ma20', 'price_change', 'p_change']
+    print(raw_k['open'].values)
     for sync in sync_list:
-        raw[sync] = hist[sync]
+        #pass
+        raw[sync] = raw_k[sync].values
     
     raw = raw.drop(rm_list, axis=1)
 
     print(raw[:6])
     print(hist[:6])
+    print(raw_k[:6])
     
 if __name__=="__main__":
     #get_data()
