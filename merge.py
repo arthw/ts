@@ -78,7 +78,7 @@ def read_stock_by_ts(stock_id, start_date, end_date):
 
 def read_stock_hist(stock_id, start_date, end_date):
     start, end, df = load_stock(stock_id)
-    if start !=[] and start>=start_date and end <=end_date:
+    if start !=[] and start<=start_date and end >=end_date:
 
         return cut_df(df, start_date, end_date)
 
